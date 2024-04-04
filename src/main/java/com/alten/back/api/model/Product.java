@@ -10,7 +10,7 @@ import jakarta.persistence.Table;
 public class Product {
 	
 	@Id
-	private Long number;
+	private Long id;
 	
 	private String code;
 	
@@ -31,12 +31,12 @@ public class Product {
 	
 	private int rating;
 
-	public Long getNumber() {
-		return number;
+	public Long getId() {
+		return id;
 	}
 
-	public void setNumber(Long number) {
-		this.number = number;
+	public void setNumber(Long id) {
+		this.id = id;
 	}
 
 	public String getCode() {
