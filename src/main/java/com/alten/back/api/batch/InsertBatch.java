@@ -26,7 +26,7 @@ public class InsertBatch {
 
 		// Read json file and write to db
 		ObjectMapper mapper = new ObjectMapper();
-		TypeReference<List<Product>> typeReference = new TypeReference<List<Product>>(){};
+		TypeReference<List<Product>> typeReference = new TypeReference<List<Product>>();
 		InputStream inputStream = TypeReference.class.getResourceAsStream("/json/products.json");
 		try {
 			List<Product> products = mapper.readValue(inputStream, typeReference);
