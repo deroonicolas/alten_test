@@ -35,10 +35,6 @@ public class Product {
 		return id;
 	}
 
-	public void setNumber(Long id) {
-		this.id = id;
-	}
-
 	public String getCode() {
 		return code;
 	}

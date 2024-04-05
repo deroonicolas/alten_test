@@ -82,6 +82,7 @@ public class ProductController {
 	public Product updateEmployee(@PathVariable("id") final Long id, @RequestBody final Product product) {
 		final Optional<Product> p = productService.getProduct(id);
 		if (p.isPresent()) {
+			// Get the received product
 			Product currentProduct = p.get();
 			String code = product.getCode();
 			if (code != null) {
@@ -95,15 +96,31 @@ public class ProductController {
 			if (description != null) {
 				currentProduct.setDescription(description);
 			}
-			// TODO : rest of properties
-			/**
-				price;
-				quantity;
-				inventoryStatus;
-				category;
-				image;
-				rating;
-			 */
+			Float price = product.getPrice();
+			if (description != null) {
+				currentProduct.setPrice(price);
+			}
+			Integer quantity = product.getQuantity();
+			if (quantity != null) {
+				currentProduct.setQuantity(quantity);
+			}
+			String inventoryStatus = product.getInventoryStatus();
+			if (inventoryStatus != null) {
+				currentProduct.setInventoryStatus(inventoryStatus);
+			}
+			String category = product.getCategory();
+			if (category != null) {
+				currentProduct.setCategory(category);
+			}
+			String image = product.getImage();
+			if (image != null) {
+				currentProduct.setImage(image);
+			}
+			Integer rating = product.getRating();
+			if (rating != null) {
+				currentProduct.setRating(rating);
+			}
+			// Save the product with the new properties
 			productService.saveProduct(currentProduct);
 			return currentProduct;
 		} else {
