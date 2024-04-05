@@ -8,27 +8,27 @@ import jakarta.persistence.Table;
 @Entity
 @Table(name = "products")
 public class Product {
-	
+
 	@Id
 	private Long id;
-	
+
 	private String code;
-	
+
 	private String name;
-	
+
 	private String description;
-	
+
 	private float price;
-	
+
 	private int quantity;
-	
+
 	@Column(name="inventory_status")
 	private String inventoryStatus;
-	
+
 	private String category;
-	
+
 	private String image;
-	
+
 	private int rating;
 
 	public Long getId() {

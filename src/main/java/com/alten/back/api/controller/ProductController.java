@@ -28,7 +28,7 @@ public class ProductController {
 
 	/**
 	 * Create - Add a new product
-	 * 
+	 *
 	 * @param product A product object
 	 * @return The product object saved
 	 */
@@ -47,7 +47,7 @@ public class ProductController {
 
 	/**
 	 * Read - Get one product
-	 * 
+	 *
 	 * @param id The id of the product
 	 * @return An Product object full filled
 	 */
@@ -63,7 +63,7 @@ public class ProductController {
 
 	/**
 	 * Read - Get all products
-	 * 
+	 *
 	 * @return - An Iterable object of Product full filled
 	 */
 	@GetMapping("/products")
@@ -73,7 +73,7 @@ public class ProductController {
 
 	/**
 	 * Update - Update an existing product
-	 * 
+	 *
 	 * @param id       - The id of the product to update
 	 * @param employee - The product object to update
 	 * @return The product object updated
@@ -130,7 +130,7 @@ public class ProductController {
 
 	/**
 	 * Delete - Delete a product
-	 * 
+	 *
 	 * @param id - The id of the product to delete
 	 */
 	@DeleteMapping("/products/{id}")
@@ -142,5 +142,5 @@ public class ProductController {
 			throw new ProductNotFoundException("Le produit avec l'id " + id + " est INTROUVABLE.");
 		}
 	}
-	
+
 }
