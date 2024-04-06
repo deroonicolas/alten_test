@@ -1,5 +1,6 @@
 package com.alten.back.api.service;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -51,5 +52,14 @@ public class ProductService {
     	Product savedProduct = productRepository.save(product);
         return savedProduct;
     }
+    
+    /**
+     * Saves a list of products
+     * @param products The list of products
+     */
+	public void saveProducts(final List<Product> products) {
+		products.forEach(product -> this.saveProduct(product));
+		
+	}
 
 }
