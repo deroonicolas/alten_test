@@ -1,6 +1,5 @@
 package com.alten.back.api.service;
 
-import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +8,9 @@ import org.springframework.stereotype.Service;
 import com.alten.back.api.model.Product;
 import com.alten.back.api.repository.ProductRepository;
 
+import lombok.Data;
+
+@Data
 @Service
 public class ProductService {
 
@@ -45,18 +47,9 @@ public class ProductService {
      * @param product The product object
      * @return The saved product
      */
-    public Product saveProduct(final Product product) {
+    public Product saveProduct(Product product) {
     	Product savedProduct = productRepository.save(product);
         return savedProduct;
     }
-
-    /**
-     * Saves a list of products
-     * @param products The list of products
-     */
-	public void saveProducts(final List<Product> products) {
-		products.forEach(product -> this.saveProduct(product));
-		
-	}
 
 }

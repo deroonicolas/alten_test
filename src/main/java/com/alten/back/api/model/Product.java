@@ -4,6 +4,7 @@ import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.NotBlank;
 import lombok.Data;
 
 @Data
@@ -14,23 +15,32 @@ public class Product {
 	@Id
 	private Long id;
 
+	@NotBlank(message = "Code is mandatory")
 	private String code;
 
+	@NotBlank(message = "Name is mandatory")
 	private String name;
 
+	@NotBlank(message = "Description is mandatory")
 	private String description;
 
+	@NotBlank(message = "Price is mandatory")
 	private float price;
 
+	@NotBlank(message = "Quantity is mandatory")
 	private int quantity;
 
+	@NotBlank(message = "Inventory status is mandatory")
 	@Column(name="inventory_status")
 	private String inventoryStatus;
 
+	@NotBlank(message = "Category is mandatory")
 	private String category;
 
+	@NotBlank(message = "Image is mandatory")
 	private String image;
 
+	@NotBlank(message = "Rating is mandatory")
 	private int rating;
 
 	public Long getId() {
