@@ -5,6 +5,9 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Positive;
+import jakarta.validation.constraints.PositiveOrZero;
 import lombok.Data;
 
 @Data
@@ -13,6 +16,7 @@ import lombok.Data;
 public class Product {
 
 	@Id
+	@NotNull(message = "Id is mandatory")
 	private Long id;
 
 	@NotBlank(message = "Code is mandatory")
@@ -24,13 +28,13 @@ public class Product {
 	@NotBlank(message = "Description is mandatory")
 	private String description;
 
-	@NotBlank(message = "Price is mandatory")
+	@PositiveOrZero(message = "Price has to be zero or more")
 	private float price;
 
-	@NotBlank(message = "Quantity is mandatory")
+	@PositiveOrZero(message = "Inventory has to be zero or more")
 	private int quantity;
 
-	@NotBlank(message = "Inventory status is mandatory")
+	@NotBlank(message = "Inventory is mandatory")
 	@Column(name="inventory_status")
 	private String inventoryStatus;
 
@@ -40,7 +44,7 @@ public class Product {
 	@NotBlank(message = "Image is mandatory")
 	private String image;
 
-	@NotBlank(message = "Rating is mandatory")
+	@Positive(message = "Rating has to be positive")
 	private int rating;
 
 	public Long getId() {

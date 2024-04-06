@@ -1,7 +1,9 @@
 package com.alten.back;
 
 import static org.hamcrest.CoreMatchers.is;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.patch;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -13,51 +15,69 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.alten.back.api.BackApplication;
-import com.alten.back.api.model.Product;
-import com.alten.back.api.service.ProductService;
-import com.fasterxml.jackson.databind.ObjectMapper;
 
 @SpringBootTest
 @AutoConfigureMockMvc
+@Transactional
 @ContextConfiguration(classes = BackApplication.class)
-//@RunWith(SpringRunner.class)
-//@JdbcTest
-//@Transactional(propagation = Propagation.NOT_SUPPORTED)
 class BackApplicationTests {
 
 	@Autowired
 	private MockMvc mockMvc;
 
-	@Autowired
-	private ProductService productService;
-	
-	@Autowired
-	ObjectMapper objectMapper;
-
-	// Unit test
-	// Ont pour vocation à tester uniquement le contenu d’une méthode
+	/**
+	 * Test for all products retrieve
+	 * @throws Exception
+	 */
 	@Test
 	public void testGetProducts() throws Exception {
 		mockMvc.perform(get("/products")).andExpect(status().isOk());
 	}
 
-	// Test integration
-	// Ont pour vocation de tester plus largement une fonctionnalité
+	/**
+	 * Test for single product retrieve
+	 * @throws Exception
+	 */
 	@Test
 	public void testGetProduct() throws Exception {
-		mockMvc.perform(get("/products")).andExpect(status().isOk())
-				.andExpect(jsonPath("$[0].name", is("Bamboo Watch")));
+		mockMvc.perform(get("/products/1000")).andExpect(status().isOk())
+				.andExpect(jsonPath("$.name", is("Bamboo Watch")));
 	}
 
-//	@Test
-//	public void testCreateProduct() throws Exception {
-//		String json = "{" + "\"id\":1," + "\"code\":\"code1\"," + "\"name\":\"name1\"" + "}";
-//		this.mockMvc.perform(post("/products")
-//                .contentType(MediaType.APPLICATION_JSON)
-//                .content(objectMapper.writeValueAsString(json)))
-//                .andExpect(status().isCreated());
-//	}
+	/**
+	 * Test for product creation
+	 * @throws Exception
+	 */
+	@Test
+	public void testCreateProduct() throws Exception {
+		mockMvc.perform(post("/products")
+			.contentType(MediaType.APPLICATION_JSON)
+			.content("""
+				{"id" : 1, "code" : "code1", "name" : "name1", "description": "desc1",
+				"price": 1, "quantity": 1, "inventoryStatus": "INSTOCK", "category": "Fitness",
+				"image": "yoga-mat.jpg", "rating": 1}
+				"""))
+			.andExpect(status().isCreated());
+	}
+	
+	@Test
+	public void testPatchProduct() throws Exception {
+		mockMvc.perform(get("/products/1000")).andExpect(status().isOk());
+		mockMvc.perform(patch("/products/1000")).andExpect(status().isOk())
+				.andExpect(jsonPath("$.name", is("Bamboo Watch")));
+	}
+	
+	/**
+	 * Test for product deletion
+	 * @throws Exception
+	 */
+	@Test
+	public void testDeleteProduct() throws Exception {
+		mockMvc.perform(delete("/products/1000"))
+			.andExpect(status().isOk());
+	}
 
 }

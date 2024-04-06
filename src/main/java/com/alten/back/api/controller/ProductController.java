@@ -1,12 +1,16 @@
 package com.alten.back.api.controller;
 
 import java.net.URI;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.http.converter.HttpMessageNotReadableException;
+import org.springframework.validation.FieldError;
+import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,6 +18,7 @@ import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
@@ -46,6 +51,8 @@ public class ProductController {
 				.path("/{id}")
 				.buildAndExpand(productSaved.getId()).toUri();
 		return ResponseEntity.created(location).build();
+		// FIXME : Return 201 AND object created
+//		return ResponseEntity.ok(productSaved);
 	}
 
 	/**
@@ -82,7 +89,7 @@ public class ProductController {
 	 * @return The product object updated
 	 */
 	@PatchMapping("/products/{id}")
-	public Product updateEmployee(@PathVariable("id") final Long id, @Valid @RequestBody final Product product) {
+	public Product updateProduct(@PathVariable("id") final Long id, @Valid @RequestBody final Product product) {
 		final Optional<Product> p = productService.getProduct(id);
 		if (p.isPresent()) {
 			// Get the received product
@@ -147,13 +154,22 @@ public class ProductController {
 	}
 	
 	/**
-	 * Catch exception of invalid input
-	 * @param e
+	 * Handling exceptions
+	 * 
+	 * @param ex The MethodArgumentNotValidException exception
 	 * @return
 	 */
-	@ExceptionHandler(HttpMessageNotReadableException.class)
-	public ResponseEntity<String> handleInvalidInput(HttpMessageNotReadableException e) {
-	    return ResponseEntity.badRequest().body("Invalid request payload.");
+	@ResponseStatus(HttpStatus.BAD_REQUEST)
+	@ExceptionHandler(MethodArgumentNotValidException.class)
+	public Map<String, String> handleValidationExceptions(
+	  MethodArgumentNotValidException ex) {
+	    Map<String, String> errors = new HashMap<>();
+	    ex.getBindingResult().getAllErrors().forEach((error) -> {
+	        String fieldName = ((FieldError) error).getField();
+	        String errorMessage = error.getDefaultMessage();
+	        errors.put(fieldName, errorMessage);
+	    });
+	    return errors;
 	}
 
 }
