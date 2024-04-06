@@ -1,4 +1,4 @@
-package com.alten.back.api.batch;
+package com.alten.back.api.back;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -22,12 +22,12 @@ public class InsertBatch {
 	@Autowired
 	ProductService productService;
 
-	public void insertJsonInDatatbase() {
+	public void insertJsonInDatatbase(final String resource) {
 
 		// Read json file and write to db
 		ObjectMapper mapper = new ObjectMapper();
 		TypeReference<List<Product>> typeReference = new TypeReference<List<Product>>(){};
-		InputStream inputStream = TypeReference.class.getResourceAsStream("/json/products.json");
+		InputStream inputStream = TypeReference.class.getResourceAsStream(resource);
 		try {
 			List<Product> products = mapper.readValue(inputStream, typeReference);
 			productService.saveProducts(products);

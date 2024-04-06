@@ -6,8 +6,9 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.validation.annotation.Validated;
+import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -19,6 +20,8 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import com.alten.back.api.model.Product;
 import com.alten.back.api.service.ProductService;
 import com.alten.backi.api.exception.ProductNotFoundException;
+
+import jakarta.validation.Valid;
 
 @RestController
 public class ProductController {
@@ -33,7 +36,7 @@ public class ProductController {
 	 * @return The product object saved
 	 */
 	@PostMapping("/products")
-	public ResponseEntity<Product> createProduct(@Validated @RequestBody final Product product) {
+	public ResponseEntity<Product> createProduct(@Valid @RequestBody final Product product) {
 		final Product productSaved = productService.saveProduct(product);
 		if (Objects.isNull(productSaved)) {
 			return ResponseEntity.noContent().build();
@@ -79,7 +82,7 @@ public class ProductController {
 	 * @return The product object updated
 	 */
 	@PatchMapping("/products/{id}")
-	public Product updateEmployee(@PathVariable("id") final Long id, @RequestBody final Product product) {
+	public Product updateEmployee(@PathVariable("id") final Long id, @Valid @RequestBody final Product product) {
 		final Optional<Product> p = productService.getProduct(id);
 		if (p.isPresent()) {
 			// Get the received product
@@ -141,6 +144,16 @@ public class ProductController {
 		} else {
 			throw new ProductNotFoundException("Le produit avec l'id " + id + " est INTROUVABLE.");
 		}
+	}
+	
+	/**
+	 * Catch exception of invalid input
+	 * @param e
+	 * @return
+	 */
+	@ExceptionHandler(HttpMessageNotReadableException.class)
+	public ResponseEntity<String> handleInvalidInput(HttpMessageNotReadableException e) {
+	    return ResponseEntity.badRequest().body("Invalid request payload.");
 	}
 
 }

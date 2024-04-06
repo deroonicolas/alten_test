@@ -5,7 +5,7 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-import com.alten.back.api.batch.InsertBatch;
+import com.alten.back.api.back.InsertBatch;
 
 @SpringBootApplication
 public class BackApplication implements CommandLineRunner {
@@ -19,7 +19,7 @@ public class BackApplication implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) throws Exception {
-		insertBatch.insertJsonInDatatbase();
+		insertBatch.insertJsonInDatatbase("/json/products.json");
 	}
 
 }
