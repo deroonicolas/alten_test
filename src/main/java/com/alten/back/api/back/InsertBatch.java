@@ -25,11 +25,11 @@ public class InsertBatch {
 	public void insertJsonInDatatbase(final String resource) {
 
 		// Read json file and write to db
-		ObjectMapper mapper = new ObjectMapper();
-		TypeReference<List<Product>> typeReference = new TypeReference<List<Product>>(){};
-		InputStream inputStream = TypeReference.class.getResourceAsStream(resource);
+		final ObjectMapper mapper = new ObjectMapper();
+		final TypeReference<List<Product>> typeReference = new TypeReference<List<Product>>(){};
+		final InputStream inputStream = TypeReference.class.getResourceAsStream(resource);
 		try {
-			List<Product> products = mapper.readValue(inputStream, typeReference);
+			final List<Product> products = mapper.readValue(inputStream, typeReference);
 			productService.saveProducts(products);
 			logger.info("Products Saved !");
 		} catch (IOException e) {

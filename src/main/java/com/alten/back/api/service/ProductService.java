@@ -48,8 +48,8 @@ public class ProductService {
      * @param product The product object
      * @return The saved product
      */
-    public Product saveProduct(Product product) {
-    	Product savedProduct = productRepository.save(product);
+    public Product saveProduct(final Product product) {
+    	final Product savedProduct = productRepository.save(product);
         return savedProduct;
     }
     
@@ -59,7 +59,6 @@ public class ProductService {
      */
 	public void saveProducts(final List<Product> products) {
 		products.forEach(product -> this.saveProduct(product));
-		
 	}
 
 }
