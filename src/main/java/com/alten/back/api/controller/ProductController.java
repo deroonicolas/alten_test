@@ -1,5 +1,6 @@
 package com.alten.back.api.controller;
 
+import java.lang.reflect.Field;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
@@ -80,49 +81,69 @@ public class ProductController {
 	 * @param id		- The id of the product to update
 	 * @param employee 	- The product object to update
 	 * @return The product object updated
+	 * @throws IllegalAccessException 
+	 * @throws IllegalArgumentException 
 	 */
 	@PatchMapping("/products/{id}")
-	public ResponseEntity<Product> updateProduct(@PathVariable("id") final Long id, @Valid @RequestBody final Product product) {
-		final Optional<Product> p = productService.getProduct(id);
-		if (p.isPresent()) {
+	public ResponseEntity<Product> updateProduct(@PathVariable("id") final Long id, @Valid @RequestBody final Product product) throws IllegalArgumentException, IllegalAccessException {
+		final Optional<Product> existingProduct = productService.getProduct(id);
+		if (existingProduct.isPresent()) {
 			// Get the received product
-			Product currentProduct = p.get();
-			String code = product.getCode();
-			if (code != null) {
-				currentProduct.setCode(code);
-			}
-			String name = product.getName();
-			if (name != null) {
-				currentProduct.setName(name);
-			}
-			String description = product.getDescription();
-			if (description != null) {
-				currentProduct.setDescription(description);
-			}
-			Float price = product.getPrice();
-			if (description != null) {
-				currentProduct.setPrice(price);
-			}
-			Integer quantity = product.getQuantity();
-			if (quantity != null) {
-				currentProduct.setQuantity(quantity);
-			}
-			String inventoryStatus = product.getInventoryStatus();
-			if (inventoryStatus != null) {
-				currentProduct.setInventoryStatus(inventoryStatus);
-			}
-			String category = product.getCategory();
-			if (category != null) {
-				currentProduct.setCategory(category);
-			}
-			String image = product.getImage();
-			if (image != null) {
-				currentProduct.setImage(image);
-			}
-			Integer rating = product.getRating();
-			if (rating != null) {
-				currentProduct.setRating(rating);
-			}
+			Product currentProduct = existingProduct.get();
+//			String code = product.getCode();
+//			if (code != null) {
+//				currentProduct.setCode(code);
+//			}
+//			String name = product.getName();
+//			if (name != null) {
+//				currentProduct.setName(name);
+//			}
+//			String description = product.getDescription();
+//			if (description != null) {
+//				currentProduct.setDescription(description);
+//			}
+//			Float price = product.getPrice();
+//			if (description != null) {
+//				currentProduct.setPrice(price);
+//			}
+//			Integer quantity = product.getQuantity();
+//			if (quantity != null) {
+//				currentProduct.setQuantity(quantity);
+//			}
+//			String inventoryStatus = product.getInventoryStatus();
+//			if (inventoryStatus != null) {
+//				currentProduct.setInventoryStatus(inventoryStatus);
+//			}
+//			String category = product.getCategory();
+//			if (category != null) {
+//				currentProduct.setCategory(category);
+//			}
+//			String image = product.getImage();
+//			if (image != null) {
+//				currentProduct.setImage(image);
+//			}
+//			Integer rating = product.getRating();
+//			if (rating != null) {
+//				currentProduct.setRating(rating);
+//			}
+			
+			// FIXME : Mandatory fields !!
+			//GET THE COMPILED VERSION OF THE CLASS
+	        Class<?> productClass = Product.class;
+	        Field[] productFields = productClass.getDeclaredFields();
+	        for(Field field : productFields) {
+	            //CANT ACCESS IF THE FIELD IS PRIVATE
+	            field.setAccessible(true);
+	            //CHECK IF THE VALUE OF THE FIELD IS NOT NULL, IF NOT UPDATE EXISTING INTERN
+	            Object value = field.get(product);
+	            if (value != null) {
+	                field.set(currentProduct, value);
+	            }
+	            //MAKE THE FIELD PRIVATE AGAIN
+	            field.setAccessible(false);
+	        }
+			
+			
 			// Save the product with the new properties
 			Product productSaved = productService.saveProduct(currentProduct);
 			return new ResponseEntity<>(productSaved, HttpStatus.OK);
