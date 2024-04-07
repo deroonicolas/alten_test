@@ -20,7 +20,8 @@ public class ProductService {
 
     /**
      * Gets the product with the specified id
-     * @param id The id of the product
+     *
+     * @param id - The id of the product
      * @return The product object if exists
      */
     public Optional<Product> getProduct(final Long id) {
@@ -29,6 +30,7 @@ public class ProductService {
 
     /**
      * Gets all products
+     *
      * @return All product objects
      */
     public Iterable<Product> getProducts() {
@@ -37,7 +39,8 @@ public class ProductService {
 
     /**
      * Deletes a product with the specified id
-     * @param id Id of the product to delete
+     *
+     * @param id - Id of the product to delete
      */
     public void deleteProduct(final Long id) {
     	productRepository.deleteById(id);
@@ -45,6 +48,7 @@ public class ProductService {
 
     /**
      * Saves a product
+     *
      * @param product The product object
      * @return The saved product
      */
@@ -52,9 +56,10 @@ public class ProductService {
     	final Product savedProduct = productRepository.save(product);
         return savedProduct;
     }
-    
+
     /**
      * Saves a list of products
+     *
      * @param products The list of products
      */
 	public void saveProducts(final List<Product> products) {

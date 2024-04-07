@@ -9,7 +9,7 @@ import com.alten.back.api.back.InsertBatch;
 
 @SpringBootApplication
 public class BackApplication implements CommandLineRunner {
-	
+
 	@Autowired
 	InsertBatch insertBatch;
 

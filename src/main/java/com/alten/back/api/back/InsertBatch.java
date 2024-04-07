@@ -16,7 +16,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 @Component
 public class InsertBatch {
-	
+
 	Logger logger = LoggerFactory.getLogger(InsertBatch.class);
 
 	@Autowired
@@ -26,7 +26,7 @@ public class InsertBatch {
 
 		// Read json file and write to db
 		final ObjectMapper mapper = new ObjectMapper();
-		final TypeReference<List<Product>> typeReference = new TypeReference<List<Product>>(){};
+		final TypeReference<List<Product>> typeReference = new TypeReference<>(){};
 		final InputStream inputStream = TypeReference.class.getResourceAsStream(resource);
 		try {
 			final List<Product> products = mapper.readValue(inputStream, typeReference);

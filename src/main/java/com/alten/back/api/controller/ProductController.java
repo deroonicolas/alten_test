@@ -1,6 +1,5 @@
 package com.alten.back.api.controller;
 
-import java.net.URI;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
@@ -20,7 +19,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.alten.back.api.model.Product;
 import com.alten.back.api.service.ProductService;
@@ -35,9 +33,9 @@ public class ProductController {
 	private ProductService productService;
 
 	/**
-	 * Create - Add a new product
+	 * Create - Create a new product
 	 *
-	 * @param product A product object
+	 * @param product - A product object
 	 * @return The product object saved
 	 */
 	@PostMapping("/products")
@@ -46,50 +44,45 @@ public class ProductController {
 		if (Objects.isNull(productSaved)) {
 			return ResponseEntity.noContent().build();
 		}
-		final URI location = ServletUriComponentsBuilder
-				.fromCurrentRequest()
-				.path("/{id}")
-				.buildAndExpand(productSaved.getId()).toUri();
-		return ResponseEntity.created(location).build();
-		// FIXME : Return 201 AND object created
-//		return ResponseEntity.ok(productSaved);
+		return new ResponseEntity<>(productSaved, HttpStatus.CREATED);
 	}
 
 	/**
-	 * Read - Get one product
+	 * Read - Retrieve all products
 	 *
-	 * @param id The id of the product
+	 * @return An Iterable object of Product full filled
+	 */
+	@GetMapping("/products")
+	public ResponseEntity<Iterable<Product>> getProducts() {
+		Iterable<Product> products = productService.getProducts();
+		return ResponseEntity.ok(products);
+	}
+
+	/**
+	 * Read - Retrieve details for product
+	 *
+	 * @param id - The id of the product
 	 * @return An Product object full filled
 	 */
 	@GetMapping("/products/{id}")
-	public Product getProduct(@PathVariable("id") final Long id) {
+	public ResponseEntity<Product> getProduct(@PathVariable("id") final Long id) {
 		final Optional<Product> product = productService.getProduct(id);
 		if (product.isPresent()) {
-			return product.get();
+			return new ResponseEntity<>(product.get(), HttpStatus.OK);
 		} else {
-			throw new ProductNotFoundException("Le produit avec l'id " + id + " est introuvable.");
+			throw new ProductNotFoundException("Product with id " + id + " not found.");
 		}
-	}
-
-	/**
-	 * Read - Get all products
-	 *
-	 * @return - An Iterable object of Product full filled
-	 */
-	@GetMapping("/products")
-	public Iterable<Product> getProducts() {
-		return productService.getProducts();
 	}
 
 	/**
 	 * Update - Update an existing product
 	 *
-	 * @param id       - The id of the product to update
-	 * @param employee - The product object to update
+	 * @param id		- The id of the product to update
+	 * @param employee 	- The product object to update
 	 * @return The product object updated
 	 */
 	@PatchMapping("/products/{id}")
-	public Product updateProduct(@PathVariable("id") final Long id, @Valid @RequestBody final Product product) {
+	public ResponseEntity<Product> updateProduct(@PathVariable("id") final Long id, @Valid @RequestBody final Product product) {
 		final Optional<Product> p = productService.getProduct(id);
 		if (p.isPresent()) {
 			// Get the received product
@@ -131,10 +124,10 @@ public class ProductController {
 				currentProduct.setRating(rating);
 			}
 			// Save the product with the new properties
-			productService.saveProduct(currentProduct);
-			return currentProduct;
+			Product productSaved = productService.saveProduct(currentProduct);
+			return new ResponseEntity<>(productSaved, HttpStatus.OK);
 		} else {
-			throw new ProductNotFoundException("Le produit avec l'id " + id + " est introubale.");
+			throw new ProductNotFoundException("Product with id " + id + " not found.");
 		}
 	}
 
@@ -144,20 +137,21 @@ public class ProductController {
 	 * @param id - The id of the product to delete
 	 */
 	@DeleteMapping("/products/{id}")
-	public void deleteProduct(@PathVariable("id") final Long id) {
+	public ResponseEntity<String> deleteProduct(@PathVariable("id") final Long id) {
 		final Optional<Product> p = productService.getProduct(id);
 		if (p.isPresent()) {
 			productService.deleteProduct(id);
+			return ResponseEntity.ok("Product with id " + id + "deleted successfully!.");
 		} else {
-			throw new ProductNotFoundException("Le produit avec l'id " + id + " est INTROUVABLE.");
+			throw new ProductNotFoundException("Product with id " + id + " not found.");
 		}
 	}
-	
+
 	/**
 	 * Handling exceptions
-	 * 
+	 *
 	 * @param ex The MethodArgumentNotValidException exception
-	 * @return
+	 * @return A Map with field name associated to the error message
 	 */
 	@ResponseStatus(HttpStatus.BAD_REQUEST)
 	@ExceptionHandler(MethodArgumentNotValidException.class)
