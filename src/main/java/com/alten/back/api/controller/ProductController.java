@@ -9,6 +9,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.util.ReflectionUtils;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -24,6 +25,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.alten.back.api.model.Product;
 import com.alten.back.api.service.ProductService;
 import com.alten.backi.api.exception.ProductNotFoundException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 import jakarta.validation.Valid;
 
@@ -32,6 +34,9 @@ public class ProductController {
 
 	@Autowired
 	private ProductService productService;
+	
+	@Autowired
+	ObjectMapper objectMapper;
 
 	/**
 	 * Create - Create a new product
@@ -74,78 +79,30 @@ public class ProductController {
 			throw new ProductNotFoundException("Product with id " + id + " not found.");
 		}
 	}
-
+	
 	/**
 	 * Update - Update an existing product
 	 *
 	 * @param id		- The id of the product to update
-	 * @param employee 	- The product object to update
+	 * @param fields 	- A map of keys / values which represents fields
 	 * @return The product object updated
 	 * @throws IllegalAccessException 
 	 * @throws IllegalArgumentException 
 	 */
 	@PatchMapping("/products/{id}")
-	public ResponseEntity<Product> updateProduct(@PathVariable("id") final Long id, @Valid @RequestBody final Product product) throws IllegalArgumentException, IllegalAccessException {
-		final Optional<Product> existingProduct = productService.getProduct(id);
-		if (existingProduct.isPresent()) {
-			// Get the received product
-			Product currentProduct = existingProduct.get();
-//			String code = product.getCode();
-//			if (code != null) {
-//				currentProduct.setCode(code);
-//			}
-//			String name = product.getName();
-//			if (name != null) {
-//				currentProduct.setName(name);
-//			}
-//			String description = product.getDescription();
-//			if (description != null) {
-//				currentProduct.setDescription(description);
-//			}
-//			Float price = product.getPrice();
-//			if (description != null) {
-//				currentProduct.setPrice(price);
-//			}
-//			Integer quantity = product.getQuantity();
-//			if (quantity != null) {
-//				currentProduct.setQuantity(quantity);
-//			}
-//			String inventoryStatus = product.getInventoryStatus();
-//			if (inventoryStatus != null) {
-//				currentProduct.setInventoryStatus(inventoryStatus);
-//			}
-//			String category = product.getCategory();
-//			if (category != null) {
-//				currentProduct.setCategory(category);
-//			}
-//			String image = product.getImage();
-//			if (image != null) {
-//				currentProduct.setImage(image);
-//			}
-//			Integer rating = product.getRating();
-//			if (rating != null) {
-//				currentProduct.setRating(rating);
-//			}
-			
-			// FIXME : Mandatory fields !!
-			//GET THE COMPILED VERSION OF THE CLASS
-	        Class<?> productClass = Product.class;
-	        Field[] productFields = productClass.getDeclaredFields();
-	        for(Field field : productFields) {
-	            //CANT ACCESS IF THE FIELD IS PRIVATE
-	            field.setAccessible(true);
-	            //CHECK IF THE VALUE OF THE FIELD IS NOT NULL, IF NOT UPDATE EXISTING INTERN
-	            Object value = field.get(product);
-	            if (value != null) {
-	                field.set(currentProduct, value);
-	            }
-	            //MAKE THE FIELD PRIVATE AGAIN
-	            field.setAccessible(false);
-	        }
-			
-			
+	public ResponseEntity<Product> updateProduct(@PathVariable("id") final Long id, @RequestBody final Map<Object, Object> fields) throws IllegalArgumentException, IllegalAccessException {
+		final Optional<Product> receivedProduct = productService.getProduct(id);
+		if (receivedProduct.isPresent()) {
+			Product product = receivedProduct.get();
+			// Get the received keys/values and update the product
+			fields.forEach((key, value) -> {
+				Field field = ReflectionUtils.findField(Product.class, (String) key);
+				field.setAccessible(true);
+				ReflectionUtils.setField(field, product, value);
+				field.setAccessible(false);
+			});
 			// Save the product with the new properties
-			Product productSaved = productService.saveProduct(currentProduct);
+			Product productSaved = productService.saveProduct(product);
 			return new ResponseEntity<>(productSaved, HttpStatus.OK);
 		} else {
 			throw new ProductNotFoundException("Product with id " + id + " not found.");
@@ -162,7 +119,7 @@ public class ProductController {
 		final Optional<Product> p = productService.getProduct(id);
 		if (p.isPresent()) {
 			productService.deleteProduct(id);
-			return ResponseEntity.ok("Product with id " + id + "deleted successfully!.");
+			return ResponseEntity.ok("Product with id " + id + " deleted successfully!.");
 		} else {
 			throw new ProductNotFoundException("Product with id " + id + " not found.");
 		}
