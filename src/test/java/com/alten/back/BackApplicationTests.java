@@ -42,8 +42,16 @@ class BackApplicationTests {
 	 */
 	@Test
 	public void testGetProduct() throws Exception {
-		mockMvc.perform(get("/products/1000")).andExpect(status().isOk())
-				.andExpect(jsonPath("$.name", is("Bamboo Watch")));
+		mockMvc.perform(post("/products")
+				.contentType(MediaType.APPLICATION_JSON)
+				.content("""
+					{"code" : "code1", "name" : "name1", "description": "desc1",
+					"price": 1, "quantity": 1, "inventoryStatus": "INSTOCK", "category": "Fitness",
+					"image": "yoga-mat.jpg", "rating": 1}
+					"""))
+				.andExpect(status().isCreated());
+		mockMvc.perform(get("/products/1")).andExpect(status().isOk())
+				.andExpect(jsonPath("$.name", is("name1")));
 	}
 
 	/**
@@ -55,7 +63,7 @@ class BackApplicationTests {
 		mockMvc.perform(post("/products")
 			.contentType(MediaType.APPLICATION_JSON)
 			.content("""
-				{"id" : 1, "code" : "code1", "name" : "name1", "description": "desc1",
+				{"code" : "code1", "name" : "name1", "description": "desc1",
 				"price": 1, "quantity": 1, "inventoryStatus": "INSTOCK", "category": "Fitness",
 				"image": "yoga-mat.jpg", "rating": 1}
 				"""))
@@ -64,13 +72,21 @@ class BackApplicationTests {
 
 	@Test
 	public void testPatchProduct() throws Exception {
-		mockMvc.perform(patch("/products/1000")
+		mockMvc.perform(post("/products")
+				.contentType(MediaType.APPLICATION_JSON)
+				.content("""
+					{"code" : "code1", "name" : "name1", "description": "desc1",
+					"price": 1, "quantity": 1, "inventoryStatus": "INSTOCK", "category": "Fitness",
+					"image": "yoga-mat.jpg", "rating": 1}
+					"""))
+				.andExpect(status().isCreated());
+		mockMvc.perform(patch("/products/1")
 			.contentType(MediaType.APPLICATION_JSON)
 			.content("""
 				{"name" : "nameModified", "description": "descriptionModified"}
 				"""))
 			.andExpect(status().isOk());
-		mockMvc.perform(get("/products/1000")).andExpect(status().isOk())
+		mockMvc.perform(get("/products/1")).andExpect(status().isOk())
 			.andExpect(jsonPath("$.name", is("nameModified")))
 			.andExpect(jsonPath("$.description", is("descriptionModified")));
 	}
@@ -81,7 +97,15 @@ class BackApplicationTests {
 	 */
 	@Test
 	public void testDeleteProduct() throws Exception {
-		mockMvc.perform(delete("/products/1000"))
+		mockMvc.perform(post("/products")
+				.contentType(MediaType.APPLICATION_JSON)
+				.content("""
+					{"name" : "name1", "description": "desc1",
+					"price": 1, "quantity": 1, "inventoryStatus": "INSTOCK", "category": "Fitness",
+					"image": "yoga-mat.jpg", "rating": 1}
+					"""))
+				.andExpect(status().isCreated());
+		mockMvc.perform(delete("/products/1"))
 			.andExpect(status().isOk());
 	}
 

@@ -25,18 +25,19 @@ import org.springframework.web.bind.annotation.RestController;
 import com.alten.back.api.model.Product;
 import com.alten.back.api.service.ProductService;
 import com.alten.backi.api.exception.ProductNotFoundException;
-import com.fasterxml.jackson.databind.ObjectMapper;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
+import lombok.extern.slf4j.Slf4j;
 
+@Slf4j
 @RestController
 public class ProductController {
 
 	@Autowired
 	private ProductService productService;
-	
-	@Autowired
-	ObjectMapper objectMapper;
 
 	/**
 	 * Create - Create a new product
@@ -44,13 +45,20 @@ public class ProductController {
 	 * @param product - A product object
 	 * @return The product object saved
 	 */
+	@Tag(name = "POST", description = "POST method of Product API")
+	@Operation(summary = "Create a product",
+    	description = "Create a product. The response is the created Product object")
 	@PostMapping("/products")
-	public ResponseEntity<Product> createProduct(@Valid @RequestBody final Product product) {
+	public ResponseEntity<Product> createProduct(@Parameter(
+		       description = "Id of product to be retrieved", required = true)
+			@Valid @RequestBody final Product product) {
 		final Product productSaved = productService.saveProduct(product);
 		if (Objects.isNull(productSaved)) {
+			log.error("Product null");
 			return ResponseEntity.noContent().build();
 		}
-		return new ResponseEntity<>(productSaved, HttpStatus.CREATED);
+		log.info("Product created with id " + productSaved.getId());
+		return new ResponseEntity<>(productSaved, HttpStatus.CREATED);	
 	}
 
 	/**
@@ -58,9 +66,13 @@ public class ProductController {
 	 *
 	 * @return An Iterable object of Product full filled
 	 */
+	@Tag(name = "GET", description = "GET methods of Product API")
+	@Operation(summary = "Retrieve all products",
+		description = "Retrieve all products. The response is a list of Product objects")
 	@GetMapping("/products")
 	public ResponseEntity<Iterable<Product>> getProducts() {
 		Iterable<Product> products = productService.getProducts();
+		log.info("Products retrieved");
 		return ResponseEntity.ok(products);
 	}
 
@@ -70,10 +82,16 @@ public class ProductController {
 	 * @param id - The id of the product
 	 * @return An Product object full filled
 	 */
+	@Tag(name = "GET", description = "GET methods of Product API")
+	@Operation(summary = "Retrieve a product",
+		description = "Retrieve a product. The response is the Product object")
 	@GetMapping("/products/{id}")
-	public ResponseEntity<Product> getProduct(@PathVariable("id") final Long id) {
+	public ResponseEntity<Product> getProduct(@Parameter(
+		       description = "Id of product to retrieve", required = true)
+			@PathVariable("id") final Long id) {
 		final Optional<Product> product = productService.getProduct(id);
 		if (product.isPresent()) {
+			log.info("Product " + id + " retrieved");
 			return new ResponseEntity<>(product.get(), HttpStatus.OK);
 		} else {
 			throw new ProductNotFoundException("Product with id " + id + " not found.");
@@ -89,20 +107,28 @@ public class ProductController {
 	 * @throws IllegalAccessException 
 	 * @throws IllegalArgumentException 
 	 */
+	@Tag(name = "PATCH", description = "PATCH method of Product API")
+	@Operation(summary = "Update details of a product",
+		description = "Update details of product. The response is the updated Product object")
 	@PatchMapping("/products/{id}")
-	public ResponseEntity<Product> updateProduct(@PathVariable("id") final Long id, @RequestBody final Map<Object, Object> fields) throws IllegalArgumentException, IllegalAccessException {
+	public ResponseEntity<Product> updateProduct(@Parameter(
+		       description = "Id of product to update", required = true)
+			@PathVariable("id") final Long id, @RequestBody final Map<Object, Object> fields) throws IllegalArgumentException, IllegalAccessException {
 		final Optional<Product> receivedProduct = productService.getProduct(id);
 		if (receivedProduct.isPresent()) {
 			Product product = receivedProduct.get();
 			// Get the received keys/values and update the product
+			StringBuilder keysValues = new StringBuilder();
 			fields.forEach((key, value) -> {
 				Field field = ReflectionUtils.findField(Product.class, (String) key);
 				field.setAccessible(true);
 				ReflectionUtils.setField(field, product, value);
 				field.setAccessible(false);
+				keysValues.append(" field : " + key + " / value : " + value + "; ");
 			});
 			// Save the product with the new properties
 			Product productSaved = productService.saveProduct(product);
+			log.info("Product " + id + " patched with fields ->" + keysValues);
 			return new ResponseEntity<>(productSaved, HttpStatus.OK);
 		} else {
 			throw new ProductNotFoundException("Product with id " + id + " not found.");
@@ -114,11 +140,17 @@ public class ProductController {
 	 *
 	 * @param id - The id of the product to delete
 	 */
+	@Tag(name = "DELETE", description = "DELETE method of Product API")
+	@Operation(summary = "Delete a product",
+		description = "Delete a product. The response is the Id of the deleted Product")
 	@DeleteMapping("/products/{id}")
-	public ResponseEntity<String> deleteProduct(@PathVariable("id") final Long id) {
-		final Optional<Product> p = productService.getProduct(id);
-		if (p.isPresent()) {
+	public ResponseEntity<String> deleteProduct(@Parameter(
+		       description = "Id of product to delete", required = true)
+			@PathVariable("id") final Long id) {
+		final Optional<Product> product = productService.getProduct(id);
+		if (product.isPresent()) {
 			productService.deleteProduct(id);
+			log.info("Product " + id + " deleted");
 			return ResponseEntity.ok("Product with id " + id + " deleted successfully!.");
 		} else {
 			throw new ProductNotFoundException("Product with id " + id + " not found.");

@@ -30,9 +30,9 @@ public class InsertBatch {
 		try {
 			final List<Product> products = mapper.readValue(inputStream, typeReference);
 			productService.saveProducts(products);
-//			log.info("Products Saved !");
+			log.info("Products saved if not exist");
 		} catch (IOException e) {
-//			log.error("Unable to save products : " + e.getMessage());
+			log.error("Unable to save products : " + e.getMessage());
 		}
 
 	}
