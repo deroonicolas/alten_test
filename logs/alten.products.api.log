@@ -1,96 +1,55 @@
-2024-04-11T17:28:46.031+02:00  INFO 19108 --- [back.api] [main] com.alten.back.api.BackApplication       : Starting BackApplication using Java 17.0.10 with PID 19108 (C:\xampp\htdocs\ALTEN\alten-shop-back-products\back\target\classes started by eulta in C:\xampp\htdocs\ALTEN\alten-shop-back-products\back)
-2024-04-11T17:28:46.034+02:00  INFO 19108 --- [back.api] [main] com.alten.back.api.BackApplication       : No active profile set, falling back to 1 default profile: "default"
-2024-04-11T17:28:47.368+02:00  INFO 19108 --- [back.api] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 3000 (http)
-2024-04-11T17:28:50.161+02:00  INFO 19108 --- [back.api] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 3000 (http) with context path ''
-2024-04-11T17:28:50.170+02:00  INFO 19108 --- [back.api] [main] com.alten.back.api.BackApplication       : Started BackApplication in 4.615 seconds (process running for 5.398)
-2024-04-11T17:28:50.610+02:00  INFO 19108 --- [back.api] [main] com.alten.back.api.back.InsertBatch      : Products Saved !
-2024-04-11T17:29:06.593+02:00  INFO 19108 --- [back.api] [http-nio-3000-exec-2] c.a.b.api.controller.ProductController   : Product created with id 1030
-2024-04-11T17:29:09.775+02:00  INFO 19108 --- [back.api] [http-nio-3000-exec-3] c.a.b.api.controller.ProductController   : Product created with id 1031
-2024-04-11T17:29:10.608+02:00  INFO 19108 --- [back.api] [http-nio-3000-exec-4] c.a.b.api.controller.ProductController   : Product created with id 1032
-2024-04-11T17:29:11.437+02:00  INFO 19108 --- [back.api] [http-nio-3000-exec-5] c.a.b.api.controller.ProductController   : Product created with id 1033
-2024-04-11T17:29:12.204+02:00  INFO 19108 --- [back.api] [http-nio-3000-exec-6] c.a.b.api.controller.ProductController   : Product created with id 1034
-2024-04-11T17:29:53.406+02:00  INFO 19108 --- [back.api] [http-nio-3000-exec-7] c.a.b.api.controller.ProductController   : Products retrieved
-2024-04-11T17:30:07.838+02:00  INFO 19108 --- [back.api] [http-nio-3000-exec-8] c.a.b.api.controller.ProductController   : Product 1000 retrieved
-2024-04-11T17:30:19.309+02:00  INFO 19108 --- [back.api] [http-nio-3000-exec-9] c.a.b.api.controller.ProductController   : Product 1000 patched with fields :  field : name / value name11111;
-2024-04-11T17:33:16.093+02:00  INFO 6384 --- [back.api] [main] com.alten.back.api.BackApplication       : Starting BackApplication using Java 17.0.10 with PID 6384 (C:\xampp\htdocs\ALTEN\alten-shop-back-products\back\target\classes started by eulta in C:\xampp\htdocs\ALTEN\alten-shop-back-products\back)
-2024-04-11T17:33:16.095+02:00  INFO 6384 --- [back.api] [main] com.alten.back.api.BackApplication       : No active profile set, falling back to 1 default profile: "default"
-2024-04-11T17:33:17.508+02:00  INFO 6384 --- [back.api] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 3000 (http)
-2024-04-11T17:33:20.068+02:00  INFO 6384 --- [back.api] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 3000 (http) with context path ''
-2024-04-11T17:33:20.078+02:00  INFO 6384 --- [back.api] [main] com.alten.back.api.BackApplication       : Started BackApplication in 4.467 seconds (process running for 5.236)
-2024-04-11T17:33:20.335+02:00  INFO 6384 --- [back.api] [main] com.alten.back.api.back.InsertBatch      : Products Saved !
-2024-04-11T17:34:22.312+02:00  INFO 6384 --- [back.api] [http-nio-3000-exec-1] c.a.b.api.controller.ProductController   : Product 1000 patched with fields -> field : name / value : nameModified;  field : code / value : codeModified;
-2024-04-11T17:37:06.399+02:00  WARN 6384 --- [back.api] [http-nio-3000-exec-4] c.a.b.a.e.ProductNotFoundException       : Product with id 0 not found.
-2024-04-11T17:42:10.818+02:00  INFO 24508 --- [back.api] [main] com.alten.back.api.BackApplication       : Starting BackApplication using Java 17.0.10 with PID 24508 (C:\xampp\htdocs\ALTEN\alten-shop-back-products\back\target\classes started by eulta in C:\xampp\htdocs\ALTEN\alten-shop-back-products\back)
-2024-04-11T17:42:10.821+02:00  INFO 24508 --- [back.api] [main] com.alten.back.api.BackApplication       : No active profile set, falling back to 1 default profile: "default"
-2024-04-11T17:42:12.170+02:00  INFO 24508 --- [back.api] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 3000 (http)
-2024-04-11T17:42:14.651+02:00  INFO 24508 --- [back.api] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 3000 (http) with context path ''
-2024-04-11T17:42:14.660+02:00  INFO 24508 --- [back.api] [main] com.alten.back.api.BackApplication       : Started BackApplication in 4.35 seconds (process running for 5.112)
-2024-04-11T17:42:14.921+02:00  INFO 24508 --- [back.api] [main] com.alten.back.api.back.InsertBatch      : Products Saved !
-2024-04-11T17:52:48.942+02:00  INFO 18736 --- [back.api] [main] com.alten.back.api.BackApplication       : Starting BackApplication using Java 17.0.10 with PID 18736 (C:\xampp\htdocs\ALTEN\alten-shop-back-products\back\target\classes started by eulta in C:\xampp\htdocs\ALTEN\alten-shop-back-products\back)
-2024-04-11T17:52:48.945+02:00  INFO 18736 --- [back.api] [main] com.alten.back.api.BackApplication       : No active profile set, falling back to 1 default profile: "default"
-2024-04-11T17:52:50.638+02:00  INFO 18736 --- [back.api] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 3000 (http)
-2024-04-11T17:52:53.843+02:00  INFO 18736 --- [back.api] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 3000 (http) with context path ''
-2024-04-11T17:52:53.852+02:00  INFO 18736 --- [back.api] [main] com.alten.back.api.BackApplication       : Started BackApplication in 5.427 seconds (process running for 6.219)
-2024-04-11T17:52:54.169+02:00  INFO 18736 --- [back.api] [main] com.alten.back.api.back.InsertBatch      : Products saved if not exist
-2024-04-11T17:55:02.957+02:00  INFO 18736 --- [back.api] [http-nio-3000-exec-5] c.a.b.api.controller.ProductController   : Products retrieved
-2024-04-11T18:00:35.315+02:00  INFO 6880 --- [back.api] [main] com.alten.back.api.BackApplication       : Starting BackApplication using Java 17.0.10 with PID 6880 (C:\xampp\htdocs\ALTEN\alten-shop-back-products\back\target\classes started by eulta in C:\xampp\htdocs\ALTEN\alten-shop-back-products\back)
-2024-04-11T18:00:35.318+02:00  INFO 6880 --- [back.api] [main] com.alten.back.api.BackApplication       : No active profile set, falling back to 1 default profile: "default"
-2024-04-11T18:00:37.915+02:00  INFO 6880 --- [back.api] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 3000 (http)
-2024-04-11T18:00:40.696+02:00  INFO 6880 --- [back.api] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 3000 (http) with context path ''
-2024-04-11T18:00:40.707+02:00  INFO 6880 --- [back.api] [main] com.alten.back.api.BackApplication       : Started BackApplication in 5.915 seconds (process running for 7.011)
-2024-04-11T18:00:40.967+02:00  INFO 6880 --- [back.api] [main] com.alten.back.api.back.InsertBatch      : Products saved if not exist
-2024-04-11T18:02:44.205+02:00  INFO 16936 --- [back.api] [main] com.alten.back.api.BackApplication       : Starting BackApplication using Java 17.0.10 with PID 16936 (C:\xampp\htdocs\ALTEN\alten-shop-back-products\back\target\classes started by eulta in C:\xampp\htdocs\ALTEN\alten-shop-back-products\back)
-2024-04-11T18:02:44.208+02:00  INFO 16936 --- [back.api] [main] com.alten.back.api.BackApplication       : No active profile set, falling back to 1 default profile: "default"
-2024-04-11T18:02:45.591+02:00  INFO 16936 --- [back.api] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 3000 (http)
-2024-04-11T18:02:48.105+02:00  INFO 16936 --- [back.api] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 3000 (http) with context path ''
-2024-04-11T18:02:48.115+02:00  INFO 16936 --- [back.api] [main] com.alten.back.api.BackApplication       : Started BackApplication in 4.474 seconds (process running for 5.302)
-2024-04-11T18:02:48.356+02:00  INFO 16936 --- [back.api] [main] com.alten.back.api.back.InsertBatch      : Products saved if not exist
-2024-04-11T18:09:42.424+02:00  INFO 23988 --- [back.api] [main] com.alten.back.api.BackApplication       : Starting BackApplication using Java 17.0.10 with PID 23988 (C:\xampp\htdocs\ALTEN\alten-shop-back-products\back\target\classes started by eulta in C:\xampp\htdocs\ALTEN\alten-shop-back-products\back)
-2024-04-11T18:09:42.426+02:00  INFO 23988 --- [back.api] [main] com.alten.back.api.BackApplication       : No active profile set, falling back to 1 default profile: "default"
-2024-04-11T18:09:43.807+02:00  INFO 23988 --- [back.api] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 3000 (http)
-2024-04-11T18:10:08.817+02:00  INFO 18644 --- [back.api] [main] com.alten.back.api.BackApplication       : Starting BackApplication using Java 17.0.10 with PID 18644 (C:\xampp\htdocs\ALTEN\alten-shop-back-products\back\target\classes started by eulta in C:\xampp\htdocs\ALTEN\alten-shop-back-products\back)
-2024-04-11T18:10:08.820+02:00  INFO 18644 --- [back.api] [main] com.alten.back.api.BackApplication       : No active profile set, falling back to 1 default profile: "default"
-2024-04-11T18:10:10.189+02:00  INFO 18644 --- [back.api] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 3000 (http)
-2024-04-11T18:10:12.621+02:00  INFO 18644 --- [back.api] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 3000 (http) with context path ''
-2024-04-11T18:10:12.629+02:00  INFO 18644 --- [back.api] [main] com.alten.back.api.BackApplication       : Started BackApplication in 4.305 seconds (process running for 5.083)
-2024-04-11T18:10:12.862+02:00  INFO 18644 --- [back.api] [main] com.alten.back.api.back.InsertBatch      : Products saved if not exist
-2024-04-11T18:13:14.658+02:00  INFO 2600 --- [back.api] [main] com.alten.back.api.BackApplication       : Starting BackApplication using Java 17.0.10 with PID 2600 (C:\xampp\htdocs\ALTEN\alten-shop-back-products\back\target\classes started by eulta in C:\xampp\htdocs\ALTEN\alten-shop-back-products\back)
-2024-04-11T18:13:14.662+02:00  INFO 2600 --- [back.api] [main] com.alten.back.api.BackApplication       : No active profile set, falling back to 1 default profile: "default"
-2024-04-11T18:13:16.065+02:00  INFO 2600 --- [back.api] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 3000 (http)
-2024-04-11T18:13:18.594+02:00  INFO 2600 --- [back.api] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 3000 (http) with context path ''
-2024-04-11T18:13:18.604+02:00  INFO 2600 --- [back.api] [main] com.alten.back.api.BackApplication       : Started BackApplication in 4.459 seconds (process running for 5.223)
-2024-04-11T18:13:18.839+02:00  INFO 2600 --- [back.api] [main] com.alten.back.api.back.InsertBatch      : Products saved if not exist
-2024-04-11T18:15:10.872+02:00  INFO 2600 --- [back.api] [http-nio-3000-exec-8] c.a.b.api.controller.ProductController   : Product created with id 1035
-2024-04-11T18:16:51.088+02:00  INFO 2600 --- [back.api] [http-nio-3000-exec-10] c.a.b.api.controller.ProductController   : Products retrieved
-2024-04-11T18:17:23.025+02:00  INFO 2600 --- [back.api] [http-nio-3000-exec-2] c.a.b.api.controller.ProductController   : Product 1000 retrieved
-2024-04-11T18:20:02.587+02:00  INFO 2600 --- [back.api] [http-nio-3000-exec-4] c.a.b.api.controller.ProductController   : Product 1000 deleted
-2024-04-11T18:25:52.627+02:00  INFO 1148 --- [back.api] [main] com.alten.back.BackApplicationTests      : Starting BackApplicationTests using Java 17.0.10 with PID 1148 (started by eulta in C:\xampp\htdocs\ALTEN\alten-shop-back-products\back)
-2024-04-11T18:25:52.631+02:00  INFO 1148 --- [back.api] [main] com.alten.back.BackApplicationTests      : No active profile set, falling back to 1 default profile: "default"
-2024-04-11T18:25:57.632+02:00  INFO 1148 --- [back.api] [main] com.alten.back.BackApplicationTests      : Started BackApplicationTests in 5.497 seconds (process running for 7.05)
-2024-04-11T18:25:57.942+02:00  INFO 1148 --- [back.api] [main] com.alten.back.api.back.InsertBatch      : Products saved if not exist
-2024-04-11T18:25:58.759+02:00 ERROR 1148 --- [back.api] [main] c.a.b.a.e.ProductNotFoundException       : Product with id 1000 not found.
-2024-04-11T18:25:58.834+02:00  INFO 1148 --- [back.api] [main] c.a.b.api.controller.ProductController   : Product created with id 1037
-2024-04-11T18:25:58.884+02:00 ERROR 1148 --- [back.api] [main] c.a.b.a.e.ProductNotFoundException       : Product with id 1000 not found.
-2024-04-11T18:25:59.043+02:00  INFO 1148 --- [back.api] [main] c.a.b.api.controller.ProductController   : Products retrieved
-2024-04-11T18:25:59.062+02:00 ERROR 1148 --- [back.api] [main] c.a.b.a.e.ProductNotFoundException       : Product with id 1000 not found.
-2024-04-11T18:32:27.286+02:00  INFO 396 --- [back.api] [main] com.alten.back.BackApplicationTests      : Starting BackApplicationTests using Java 17.0.10 with PID 396 (started by eulta in C:\xampp\htdocs\ALTEN\alten-shop-back-products\back)
-2024-04-11T18:32:27.292+02:00  INFO 396 --- [back.api] [main] com.alten.back.BackApplicationTests      : No active profile set, falling back to 1 default profile: "default"
-2024-04-11T18:32:32.816+02:00  INFO 396 --- [back.api] [main] com.alten.back.BackApplicationTests      : Started BackApplicationTests in 6.033 seconds (process running for 7.506)
-2024-04-11T18:32:33.175+02:00  INFO 396 --- [back.api] [main] com.alten.back.api.back.InsertBatch      : Products saved if not exist
-2024-04-11T18:32:34.040+02:00  INFO 396 --- [back.api] [main] c.a.b.api.controller.ProductController   : Product created with id 1039
-2024-04-11T18:32:34.098+02:00 ERROR 396 --- [back.api] [main] c.a.b.a.e.ProductNotFoundException       : Product with id 1 not found.
-2024-04-11T18:32:34.145+02:00  INFO 396 --- [back.api] [main] c.a.b.api.controller.ProductController   : Product created with id 1040
-2024-04-11T18:32:34.159+02:00  INFO 396 --- [back.api] [main] c.a.b.api.controller.ProductController   : Product created with id 1041
-2024-04-11T18:32:34.163+02:00 ERROR 396 --- [back.api] [main] c.a.b.a.e.ProductNotFoundException       : Product with id 1 not found.
-2024-04-11T18:32:34.297+02:00  INFO 396 --- [back.api] [main] c.a.b.api.controller.ProductController   : Products retrieved
-2024-04-11T18:32:34.314+02:00 ERROR 396 --- [back.api] [main] c.a.b.a.e.ProductNotFoundException       : Product with id 1000 not found.
-2024-04-11T18:33:19.524+02:00  INFO 4992 --- [back.api] [main] com.alten.back.BackApplicationTests      : Starting BackApplicationTests using Java 17.0.10 with PID 4992 (started by eulta in C:\xampp\htdocs\ALTEN\alten-shop-back-products\back)
-2024-04-11T18:33:19.530+02:00  INFO 4992 --- [back.api] [main] com.alten.back.BackApplicationTests      : No active profile set, falling back to 1 default profile: "default"
-2024-04-11T18:33:25.077+02:00  INFO 4992 --- [back.api] [main] com.alten.back.BackApplicationTests      : Started BackApplicationTests in 6.077 seconds (process running for 7.701)
-2024-04-11T18:33:25.419+02:00  INFO 4992 --- [back.api] [main] com.alten.back.api.back.InsertBatch      : Products saved if not exist
-2024-04-11T18:33:26.316+02:00  INFO 4992 --- [back.api] [main] c.a.b.api.controller.ProductController   : Product created with id 1043
-2024-04-11T18:33:26.371+02:00 ERROR 4992 --- [back.api] [main] c.a.b.a.e.ProductNotFoundException       : Product with id 1 not found.
-2024-04-11T18:33:26.420+02:00  INFO 4992 --- [back.api] [main] c.a.b.api.controller.ProductController   : Product created with id 1044
-2024-04-11T18:33:26.432+02:00  INFO 4992 --- [back.api] [main] c.a.b.api.controller.ProductController   : Product created with id 1045
-2024-04-11T18:33:26.437+02:00 ERROR 4992 --- [back.api] [main] c.a.b.a.e.ProductNotFoundException       : Product with id 1 not found.
-2024-04-11T18:33:26.590+02:00  INFO 4992 --- [back.api] [main] c.a.b.api.controller.ProductController   : Products retrieved
+2024-04-12T10:37:40.611+02:00  INFO 19104 --- [back.api] [main] com.alten.back.BackApplicationTests      : Starting BackApplicationTests using Java 17.0.10 with PID 19104 (started by eulta in C:\xampp\htdocs\ALTEN\alten-shop-back-products\back)
+2024-04-12T10:37:40.627+02:00  INFO 19104 --- [back.api] [main] com.alten.back.BackApplicationTests      : No active profile set, falling back to 1 default profile: "default"
+2024-04-12T10:37:46.635+02:00  INFO 19104 --- [back.api] [main] com.alten.back.BackApplicationTests      : Started BackApplicationTests in 6.564 seconds (process running for 13.652)
+2024-04-12T10:37:47.047+02:00  INFO 19104 --- [back.api] [main] com.alten.back.api.back.InsertBatch      : Products saved if not exist
+2024-04-12T10:37:48.150+02:00  INFO 19104 --- [back.api] [main] c.a.b.api.controller.ProductController   : Product created with id 1047
+2024-04-12T10:37:48.224+02:00 ERROR 19104 --- [back.api] [main] c.a.b.a.e.ProductNotFoundException       : Product with id 1 not found.
+2024-04-12T10:37:48.290+02:00  INFO 19104 --- [back.api] [main] c.a.b.api.controller.ProductController   : Product created with id 1048
+2024-04-12T10:37:48.309+02:00  INFO 19104 --- [back.api] [main] c.a.b.api.controller.ProductController   : Product created with id 1049
+2024-04-12T10:37:48.314+02:00 ERROR 19104 --- [back.api] [main] c.a.b.a.e.ProductNotFoundException       : Product with id 1 not found.
+2024-04-12T10:37:48.564+02:00  INFO 19104 --- [back.api] [main] c.a.b.api.controller.ProductController   : Products retrieved
+2024-04-12T10:49:13.166+02:00  INFO 20184 --- [back.api] [main] com.alten.back.BackApplicationTests      : Starting BackApplicationTests using Java 17.0.10 with PID 20184 (started by eulta in C:\xampp\htdocs\ALTEN\alten-shop-back-products\back)
+2024-04-12T10:49:13.170+02:00  INFO 20184 --- [back.api] [main] com.alten.back.BackApplicationTests      : No active profile set, falling back to 1 default profile: "default"
+2024-04-12T10:49:18.958+02:00  INFO 20184 --- [back.api] [main] com.alten.back.BackApplicationTests      : Started BackApplicationTests in 6.39 seconds (process running for 8.087)
+2024-04-12T10:49:19.370+02:00  INFO 20184 --- [back.api] [main] com.alten.back.api.back.InsertBatch      : Products saved if not exist
+2024-04-12T10:49:20.303+02:00  INFO 20184 --- [back.api] [main] c.a.b.api.controller.ProductController   : Product created with id 1051
+2024-04-12T10:49:20.365+02:00 ERROR 20184 --- [back.api] [main] c.a.b.a.e.ProductNotFoundException       : Product with id 1 not found.
+2024-04-12T10:49:20.426+02:00  INFO 20184 --- [back.api] [main] c.a.b.api.controller.ProductController   : Product created with id 1052
+2024-04-12T10:49:20.446+02:00  INFO 20184 --- [back.api] [main] c.a.b.api.controller.ProductController   : Product created with id 1053
+2024-04-12T10:49:20.452+02:00 ERROR 20184 --- [back.api] [main] c.a.b.a.e.ProductNotFoundException       : Product with id 1 not found.
+2024-04-12T10:49:20.656+02:00  INFO 20184 --- [back.api] [main] c.a.b.api.controller.ProductController   : Products retrieved
+2024-04-12T10:50:14.817+02:00  INFO 19184 --- [back.api] [main] com.alten.back.BackApplicationTests      : Starting BackApplicationTests using Java 17.0.10 with PID 19184 (started by eulta in C:\xampp\htdocs\ALTEN\alten-shop-back-products\back)
+2024-04-12T10:50:14.823+02:00  INFO 19184 --- [back.api] [main] com.alten.back.BackApplicationTests      : No active profile set, falling back to 1 default profile: "default"
+2024-04-12T10:50:20.636+02:00  INFO 19184 --- [back.api] [main] com.alten.back.BackApplicationTests      : Started BackApplicationTests in 6.43 seconds (process running for 8.26)
+2024-04-12T10:50:21.020+02:00  INFO 19184 --- [back.api] [main] com.alten.back.api.back.InsertBatch      : Products saved if not exist
+2024-04-12T10:50:21.898+02:00  INFO 19184 --- [back.api] [main] c.a.b.api.controller.ProductController   : Product created with id 1055
+2024-04-12T10:50:21.958+02:00 ERROR 19184 --- [back.api] [main] c.a.b.a.e.ProductNotFoundException       : Product with id 1 not found.
+2024-04-12T10:50:22.030+02:00  INFO 19184 --- [back.api] [main] c.a.b.api.controller.ProductController   : Product created with id 1056
+2024-04-12T10:50:22.052+02:00  INFO 19184 --- [back.api] [main] c.a.b.api.controller.ProductController   : Product created with id 1057
+2024-04-12T10:50:36.885+02:00 ERROR 19184 --- [back.api] [main] c.a.b.a.e.ProductNotFoundException       : Product with id 1 not found.
+2024-04-12T10:50:54.289+02:00 ERROR 19184 --- [back.api] [main] c.a.b.a.e.ProductNotFoundException       : Product with id 1 not found.
+2024-04-12T10:50:54.430+02:00  INFO 19184 --- [back.api] [main] c.a.b.api.controller.ProductController   : Products retrieved
+2024-04-12T12:17:13.779+02:00  INFO 3184 --- [back.api] [main] com.alten.back.api.BackApplication       : Starting BackApplication using Java 17.0.10 with PID 3184 (C:\xampp\htdocs\ALTEN\alten-shop-back-products\back\target\classes started by eulta in C:\xampp\htdocs\ALTEN\alten-shop-back-products\back)
+2024-04-12T12:17:13.782+02:00  INFO 3184 --- [back.api] [main] com.alten.back.api.BackApplication       : No active profile set, falling back to 1 default profile: "default"
+2024-04-12T12:17:15.672+02:00  INFO 3184 --- [back.api] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 3000 (http)
+2024-04-12T12:17:18.678+02:00  INFO 3184 --- [back.api] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 3000 (http) with context path ''
+2024-04-12T12:17:18.689+02:00  INFO 3184 --- [back.api] [main] com.alten.back.api.BackApplication       : Started BackApplication in 5.478 seconds (process running for 6.32)
+2024-04-12T12:17:19.526+02:00  INFO 3184 --- [back.api] [main] com.alten.back.api.back.InsertBatch      : Products saved if not exist
+2024-04-12T12:19:26.134+02:00  INFO 17296 --- [back.api] [main] com.alten.back.BackApplicationTests      : Starting BackApplicationTests using Java 17.0.10 with PID 17296 (started by eulta in C:\xampp\htdocs\ALTEN\alten-shop-back-products\back)
+2024-04-12T12:19:26.138+02:00  INFO 17296 --- [back.api] [main] com.alten.back.BackApplicationTests      : No active profile set, falling back to 1 default profile: "default"
+2024-04-12T12:19:31.338+02:00  INFO 17296 --- [back.api] [main] com.alten.back.BackApplicationTests      : Started BackApplicationTests in 5.749 seconds (process running for 7.123)
+2024-04-12T12:19:31.616+02:00  INFO 17296 --- [back.api] [main] com.alten.back.api.back.InsertBatch      : Products saved if not exist
+2024-04-12T12:19:32.604+02:00  INFO 17296 --- [back.api] [main] c.a.b.api.controller.ProductController   : Product created with id 1030
+2024-04-12T12:19:32.680+02:00  INFO 17296 --- [back.api] [main] c.a.b.api.controller.ProductController   : Product 1000 retrieved
+2024-04-12T12:19:32.948+02:00  INFO 17296 --- [back.api] [main] c.a.b.api.controller.ProductController   : Products retrieved
+2024-04-12T12:19:32.969+02:00  INFO 17296 --- [back.api] [main] c.a.b.api.controller.ProductController   : Product 1029 deleted
+2024-04-12T12:20:52.953+02:00  INFO 2060 --- [back.api] [main] com.alten.back.BackApplicationTests      : Starting BackApplicationTests using Java 17.0.10 with PID 2060 (started by eulta in C:\xampp\htdocs\ALTEN\alten-shop-back-products\back)
+2024-04-12T12:20:52.957+02:00  INFO 2060 --- [back.api] [main] com.alten.back.BackApplicationTests      : No active profile set, falling back to 1 default profile: "default"
+2024-04-12T12:20:57.800+02:00  INFO 2060 --- [back.api] [main] com.alten.back.BackApplicationTests      : Started BackApplicationTests in 5.396 seconds (process running for 6.775)
+2024-04-12T12:20:58.082+02:00  INFO 2060 --- [back.api] [main] com.alten.back.api.back.InsertBatch      : Products saved if not exist
+2024-04-12T12:20:58.939+02:00  INFO 2060 --- [back.api] [main] c.a.b.api.controller.ProductController   : Product 1000 patched with fields -> field : name / value : nameModified;  field : description / value : descriptionModified; 
+2024-04-12T12:20:58.984+02:00  INFO 2060 --- [back.api] [main] c.a.b.api.controller.ProductController   : Product 1000 retrieved
+2024-04-12T12:20:59.120+02:00  INFO 2060 --- [back.api] [main] c.a.b.api.controller.ProductController   : Product created with id 1031
+2024-04-12T12:20:59.130+02:00  INFO 2060 --- [back.api] [main] c.a.b.api.controller.ProductController   : Product 1000 retrieved
+2024-04-12T12:20:59.282+02:00  INFO 2060 --- [back.api] [main] c.a.b.api.controller.ProductController   : Products retrieved
+2024-04-12T12:20:59.304+02:00  INFO 2060 --- [back.api] [main] c.a.b.api.controller.ProductController   : Product 1029 deleted
