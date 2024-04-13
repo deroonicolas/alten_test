@@ -23,9 +23,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.alten.back.api.exception.ProductNotFoundException;
 import com.alten.back.api.model.Product;
 import com.alten.back.api.service.ProductService;
-import com.alten.backi.api.exception.ProductNotFoundException;
 
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;

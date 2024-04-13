@@ -1,4 +1,4 @@
-package com.alten.backi.api.exception;
+package com.alten.back.api.exception;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;
