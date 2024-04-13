@@ -109,6 +109,7 @@ public class ProductController {
 	 * @throws IllegalAccessException 
 	 * @throws IllegalArgumentException 
 	 */
+	@SuppressWarnings("null")
 	@Tag(name = "PATCH", description = "PATCH method of Product API")
 	@Operation(summary = "Update details of a product",
 		description = "Update details of product. The response is the updated Product object")
