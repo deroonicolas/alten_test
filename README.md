@@ -64,13 +64,13 @@ Puis, il est possible de lancer l'application de plusieurs manières grâce à :
 
 ### <ins>Utilisation / Test</ins>
 
-Les endpoints de l'API sont disponible à l'adresse [http://localhost:3000/api-docs](http://localhost:3000/api-docs)
+Les endpoints de l'API sont disponible à l'adresse [http://localhost:3000/api-docs](http://localhost:3000/api-docs).
 L'API peut être utilisée / testée de plusieurs manières :
 
 1. **Postman**
 
    - Le fichier [alten_products.postman_collection.json](Documentation/alten_products.postman_collection.json) présent dans le répertoire [/Documentation](/Documentation/) regroupe l'ensemble des requêtes évoquées dans la section précédente.
-     Sous <ins>Postman</ins>, clquer sur _Menu > File > Import_ puis sélectionner [ce fichier JSON](Documentation/alten_products.postman_collection.json)
+     Sous <ins>Postman</ins>, cliquer sur _Menu > File > Import_ puis sélectionner [ce fichier JSON](Documentation/alten_products.postman_collection.json)
 
 2. **Swagger**
 
