@@ -39,6 +39,9 @@ Les technologies suivantes ont été utilisées pour développer le back-end :
 
 L'application est disponible sur Github. Afin de récupérer le projet, se placer dans le répertoire de votre choix puis exécuter la commande `git clone https://github.com/deroonicolas/alten_test.git back` : cela aura pour effet de créer un répertoire `back` dans lequel se trouvera les sources du projet back-end.
 
+> [!WARNING]
+> Si le projet ne compile pas dû à <ins>Lombok</ins>, il est nécessaire de l'installer sous Eclipse ou STS. Pour ce faire, utiliser l'archive [lombok-1.18.30.jar](/Resources/lombok-1.18.30.jar) en exécutant la commande `java -jar lombok-1.18.30.jar` qui lancera l'installer. Cliquer ensuite sur _Install / Update_ et redémarrer l'IDE.
+
 ### <ins>Lancement</ins>
 
 Tout d'abord, **Mysql doit être lancé** pour que l'application fonctionne.
@@ -54,11 +57,11 @@ Puis, il est possible de lancer l'application de plusieurs manières grâce à :
      - Se placer à la racine du projet
      - Exécuter la commande `mvn spring-boot:run`
 
-2. Spring Tool Suite
+2. Eclipse / Spring Tool Suite
 
    - Cliquer droit sur le projet puis _Run as > Spring Boot App_
 
-**Quelque soit la méthode utilisée**, une base de données `alten_products` comportant une table `products` alimentée par le fichier [src/main/resources/json/products.json](src/main/resources/json/products.json) sera créée.
+**Quelque soit la méthode utilisée**, une base de données `alten_products` comportant une table `products` alimentée par le fichier [products.json](src/main/resources/json/products.json) sera créée.
 
 **Si la base de données et la table alimentée existent déjà**, aucune opération sur la base ne sera réalisée.
 
@@ -69,8 +72,8 @@ L'API peut être utilisée / testée de plusieurs manières :
 
 1. **Postman**
 
-   - Le fichier [alten_products.postman_collection.json](Documentation/alten_products.postman_collection.json) présent dans le répertoire [/Documentation](/Documentation/) regroupe l'ensemble des requêtes évoquées dans la section précédente.
-     Sous <ins>Postman</ins>, cliquer sur _Menu > File > Import_ puis sélectionner [ce fichier JSON](Documentation/alten_products.postman_collection.json)
+   - Le fichier [alten_products.postman_collection.json](Resources/alten_products.postman_collection.json) présent dans le répertoire [/Resources](/Resources/) regroupe l'ensemble des requêtes évoquées dans la section précédente.
+     Sous <ins>Postman</ins>, cliquer sur _Menu > File > Import_ puis sélectionner [ce fichier JSON](Resources/alten_products.postman_collection.json)
 
 2. **Swagger**
 
