@@ -7,7 +7,6 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.alten.back.api.CustomProperties;
 import com.alten.back.api.model.Product;
 import com.alten.back.api.service.ProductService;
 import com.fasterxml.jackson.core.type.TypeReference;
