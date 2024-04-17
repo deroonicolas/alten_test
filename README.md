@@ -87,5 +87,5 @@ L'API peut être utilisée / testée de plusieurs manières :
 
 4. **Test unitaires**
 
-   - Des tests unitaires ont également été implémentés dans le fichier [BackApplicationTests.java](src/test/java/com/alten/back/BackApplicationTests.java). Ceux-ci peuvent être exécutés grâce à la commande `mvn test` en étant positionné à la racine de l'application.
+   - Des tests unitaires ont également été implémentés dans le fichier [ProductControllerTest.java](src/test/java/com/alten/back/ProductControllerTest.java). Ceux-ci peuvent être exécutés grâce à la commande `mvn test` en étant positionné à la racine de l'application.
      <ins>NB</ins> : Les tests sont également exécutés lors du lancement de l'application (voir section `Lancement`)
